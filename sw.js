@@ -77,9 +77,6 @@ workbox.routing.registerRoute(
         plugins: [
             new workbox.cacheableResponse.Plugin({
                 statuses: [0, 200],
-                headers: {
-                    "X-Auth-Token": "f716891a47964c68a5b16d8d519bb29a",
-                },
             }),
             new workbox.expiration.Plugin({
               maxAgeSeconds: 60 * 30,
