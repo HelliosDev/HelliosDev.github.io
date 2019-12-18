@@ -5,7 +5,7 @@
     "start_url": "/",
     "display": "standalone",
     "background_color": "#009688",
-    "theme_color": "#2ED0EF",
+    "theme_color": "#26A69A",
     "icons": [
         {
             "src": "src/img/mipmap/football-192.png",

@@ -1,1 +1,2 @@
-https://github.com/HelliosDev/football-pwa
+Github repo : https://github.com/HelliosDev/HelliosDev.github.io
+Github hosting :  https://helliosdev.github.io/
