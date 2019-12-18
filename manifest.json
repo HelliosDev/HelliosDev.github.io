@@ -1,0 +1,22 @@
+{
+    "name": "Football App",
+    "short_name": "Football",
+    "description": "Aplikasi yang menampilkan info mengenai football",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#009688",
+    "theme_color": "#2ED0EF",
+    "icons": [
+        {
+            "src": "src/img/mipmap/football-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "src/img/mipmap/football.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "gcm_sender_id": "770015577771"
+}

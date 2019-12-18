@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Football App</title>
+    <link rel="stylesheet" type="text/css" href="src/css/materialize.min.css">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#2ED0EF">
+    <link rel="apple-touch-icon" href="src/img/mipmap/football.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <nav class="teal lighten-1 nav-extended" role="navigation">
+        <div class="nav-wrapper container">
+            <a href="#" class="brand-logo" id="logo-container">Football</a>
+            <a href="./index.html" class="sidenav-trigger" data-target="nav-mobile">
+                <i class="material-icons">arrow_back</i>
+            </a>
+            <ul class="topnav right hide-on-med-and-down"></ul>
+            <ul class="sidenav" id="nav-mobile"></ul>
+        </div>
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent">
+                <li class="tab">
+                    <a href="#tab-overview">Overview</a>
+                </li>
+                <li class="tab">
+                    <a href="#tab-squad">Players</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div id="tab-overview" class="col s12"></div>
+    <div id="tab-squad" class="col s12">
+        <div class="col s12 m7">
+                <ul class="collection with-header" id="squad-content">
+
+                </ul>
+        </div>
+    </div>
+    
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red">
+            <i class="large material-icons" id="fav-btn">favorite_border</i>
+        </a>
+    </div>
+
+    <script type="text/javascript" src="src/js/materialize.min.js"></script>
+    <script type="text/javascript" src="src/js/register.js"></script>
+    <script type="text/javascript" src="src/js/tab.js"></script>
+    <script type="text/javascript" src="src/vendor/js/idb.js"></script>
+    <script type="text/javascript" src="src/js/db.js"></script>
+    <script type="text/javascript" src="src/js/api.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const btnFavorite = document.getElementById('fav-btn');
+            let isSaved = false;
+            const urlParams = new URLSearchParams(window.location.search);
+            const idParam = urlParams.get("id");
+
+            checkFavorite(idParam)
+                .then(icon => {
+                    btnFavorite.innerHTML = icon;
+                    isSaved = true;
+                }).catch(icon => {
+                    btnFavorite.innerHTML = icon;
+                    isSaved = false;
+                });
+
+            btnFavorite.addEventListener("click", () => {
+                if (!isSaved) {
+                    let item = getTeamDetail();
+                    item.then(team => storeTeam(team));
+                    isSaved = true;
+                    btnFavorite.innerHTML = "favorite";
+                    M.toast({html: "Hooray! this team is your favorite"});
+                } else {
+                    destroyTeam(idParam);
+                    btnFavorite.innerHTML = "favorite_border";
+                    isSaved = false;
+                    M.toast({html: "Oops! this team is not your favorite anymore"});
+                }
+            });
+            getTeamDetail();
+        });
+    </script>
+</body>
+</html>
