@@ -10,8 +10,8 @@ const loadPage = page => {
                         case "home":
                             getTeams();
                             break;
-                        case "match":
-                            getMatches();
+                        case "standing":
+                            getStandings();
                             break;
                         case "favorite":
                             getSavedTeams();
