@@ -15,31 +15,35 @@ const getData = url => {
 }
 
 
-function getMatches() {
+function getStandings() {
+    const leagueId = 2021;
     if ("caches" in window) {
-        caches.match(`${BASE_URL}/matches`).then(response => {
+        caches.match(`${BASE_URL}/competitions/${leagueId}/standings`).then(response => {
             if (response) {
                 response.json().then(data => {
-                    let matchHtml = "";
-                    data.matches.forEach(match => {
-                        matchHtml += `
+                    let standingHtml = "";
+                    const filteredStandings = data.standings.filter(standing => standing.type === "TOTAL");
+                    filteredStandings[0].table.forEach(standing => {
+                        standingHtml += `
                             <div class="col s12">
                                 <div class="card center-align">
                                     <div class="card-content">
-                                        <h5 class="teal white-text">${match.status}</h5>
-                                        <span>${match.group}</span>
+                                        <h5 class="teal white-text">${standing.position}</h5>
+                                        <h5>${standing.team.name}</h5>
                                         <div class="row">
-                                            <div class="col s5">
+                                            <div class="col s4">
                                                 <p>
-                                                    <strong class="truncate">${match.homeTeam.name}</strong>
+                                                    <strong class="truncate">Won: ${standing.won}</strong>
                                                 </p>
                                             </div>
-                                            <div class="col s2">
-                                                <p>VS</p>
-                                            </div>
-                                            <div class="col s5">
+                                            <div class="col s4">
                                                 <p>
-                                                    <strong class="truncate">${match.awayTeam.name}</strong>
+                                                    <strong class="truncate">Draw: ${standing.draw}</strong>
+                                                </p>
+                                            </div>
+                                            <div class="col s4">
+                                                <p>
+                                                    <strong class="truncate">Lost: ${standing.lost}</strong>
                                                 </p>
                                             </div>
                                         </div>
@@ -48,33 +52,36 @@ function getMatches() {
                             </div>
                         `;
                     });
-                    document.getElementById("matches").innerHTML = matchHtml;
+                    document.getElementById("standings").innerHTML = standingHtml;
                 })
             }
         });
     }
-    getData(`${BASE_URL}/matches`)
+    getData(`${BASE_URL}/competitions/${leagueId}/standings`)
         .then(data => {
-            let matchHtml = "";
-            data.matches.forEach(match => {
-                matchHtml += `
+            let standingHtml = "";
+            const filteredStandings = data.standings.filter(standing => standing.type === "TOTAL");
+            filteredStandings[0].table.forEach(standing => {
+                standingHtml += `
                     <div class="col s12">
                         <div class="card center-align">
                             <div class="card-content">
-                                <h5 class="teal white-text">${match.status}</h5>
-                                <span>${match.group}</span>
+                                <h5 class="teal white-text">${standing.position}</h5>
+                                <h5>${standing.team.name}</h5>
                                 <div class="row">
-                                    <div class="col s5">
+                                    <div class="col s4">
                                         <p>
-                                            <strong class="truncate">${match.homeTeam.name}</strong>
+                                            <strong class="truncate">Won: ${standing.won}</strong>
                                         </p>
                                     </div>
-                                    <div class="col s2">
-                                        <p>VS</p>
-                                    </div>
-                                    <div class="col s5">
+                                    <div class="col s4">
                                         <p>
-                                            <strong class="truncate">${match.awayTeam.name}</strong>
+                                            <strong class="truncate">Draw: ${standing.draw}</strong>
+                                        </p>
+                                    </div>
+                                    <div class="col s4">
+                                        <p>
+                                            <strong class="truncate">Lost: ${standing.lost}</strong>
                                         </p>
                                     </div>
                                 </div>
@@ -83,7 +90,7 @@ function getMatches() {
                     </div>
                 `;
             });
-            document.getElementById("matches").innerHTML = matchHtml;
+            document.getElementById("standings").innerHTML = standingHtml;
         })
         .catch(error);
 }
@@ -99,7 +106,7 @@ function getTeams() {
                         let imageUrl = team.crestUrl;
                         imageUrl = imageUrl.replace(/^http:\/\//i, 'https://');
                         teamHtml += `
-                            <div class="col s6 m7">
+                            <div class="col s6 m12">
                                 <a href="../../team.html?id=${team.id}">
                                     <div class="card center-align">
                                         <div class="card-image waves-effect waves-block waves-light">
@@ -126,7 +133,7 @@ function getTeams() {
                 let imageUrl = team.crestUrl;
                 imageUrl = imageUrl.replace(/^http:\/\//i, 'https://');
                 teamHtml += `
-                    <div class="col s6 m7">
+                    <div class="col s6 m12">
                         <a href="../../team.html?id=${team.id}">
                             <div class="card center-align">
                                 <div class="card-image waves-effect waves-block waves-light">
@@ -285,7 +292,7 @@ function getSavedTeams() {
                 let imageUrl = team.crestUrl;
                 imageUrl = imageUrl.replace(/^http:\/\//i, 'https://');
                 teamHtml += `
-                    <div class="col s6 m7">
+                    <div class="col s6 m12">
                         <a href="../../team.html?id=${team.id}">
                             <div class="card center-align">
                                 <div class="card-image waves-effect waves-block waves-light">
