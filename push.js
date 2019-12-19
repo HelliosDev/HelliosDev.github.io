@@ -13,10 +13,10 @@ try {
     )
 
     const pushSubscription = {
-        "endpoint": "https://updates.push.services.mozilla.com/wpush/v2/gAAAAABd-apToHG6D12l9MjRkPChVfacr-xAJ4UT3Vb2ud0HHzXmnzFTK0ucPfGFlQnNLEGjnACs-LQ73zb4euIg3DeEV-KvPuIY_YjfBz9g4ihZC98lqY1YHNOHZkhJk-NGBn0BPXfHqBHBlqYAEz32kCakYrAQ0AkBfTC6wLvTLUZo_BvZG_U",
+        "endpoint": "https://updates.push.services.mozilla.com/wpush/v2/gAAAAABd-4A_FA2i7tvTqSJEvPNnr91-UE66_AFBrMvBm8V8cKIpMDNUL0PqxZzQSu77gBGibnrEBBscnrh-3x1nGQ9km28PmFQ8eSihOZgymnGyEgzhZahqVPdp2X8I_dgfJ9tfJWZpZXxw8JTTk9YBerS5Y684FfRR0BlM1O4NqtW-Vge6vfc",
         "keys": {
-            "p256dh": "BICSyoT2MyEqpm3RwZKMDWGXEVf86ZtwbaHT+ngz05GYOd25nUPo1S4AzJR8gplYAwOcOPYyrwqsnofMQjmODHE=",
-            "auth": "LEznF8ia8jWptf2XsCtLCw=="
+            "p256dh": "BOUv2aXJbI6Y7DTsXS3SMD13Kf2bmlI4m0e3EhR7xtS3bESx8lJR5pZO+CDz8NfdXvP6wFVZoYAD4ygyHNFvZuU=",
+            "auth": "7bLPOFbka3kCLHNw3lc6YQ=="
         }
     };
 
